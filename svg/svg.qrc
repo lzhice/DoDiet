@@ -1,4 +1,11 @@
 <RCC>
     <qresource prefix="/">
+        <file>menu.svg</file>
+        <file>search.svg</file>
+        <file>settings.svg</file>
+        <file>not-found.svg</file>
+        <file>searching.svg</file>
+        <file>history.svg</file>
+        <file>back.svg</file>
     </qresource>
 </RCC>
