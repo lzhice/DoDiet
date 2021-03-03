@@ -1,0 +1,3 @@
+module controllers
+# pattern   CustomTypeName      version     TypeName
+          RecipeControllers       1.0      Recipe.qml

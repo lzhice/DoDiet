@@ -1,0 +1,4 @@
+module views
+RecipeItem          1.0     RecipeItem.qml
+RecipesView         1.0     Recipes.qml
+RecipeDetail        1.0     RecipeDetail.qml

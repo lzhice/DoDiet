@@ -1,0 +1,4 @@
+module components
+# pattern   CustomTypeName      version TypeName
+singleton AppTheme              1.0     ThemeDefinitions.qml
+          CustomTextField       1.0     TextField.qml

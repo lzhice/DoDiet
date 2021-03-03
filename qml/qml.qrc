@@ -1,5 +1,18 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>components/ThemeDefinitions.qml</file>
+        <file>components/qmldir</file>
+        <file>components/TextField.qml</file>
+        <file>views/Recipes.qml</file>
+        <file>controllers/Recipe.qml</file>
+        <file>controllers/qmldir</file>
+        <file>views/RecipeItem.qml</file>
+        <file>models/Recipe.qml</file>
+        <file>views/qmldir</file>
+        <file>models/qmldir</file>
+        <file>models/Nutrients.qml</file>
+        <file>models/Histories.qml</file>
+        <file>views/RecipeDetail.qml</file>
     </qresource>
 </RCC>
