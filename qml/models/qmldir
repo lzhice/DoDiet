@@ -2,3 +2,4 @@ module  models
 singleton   RecipeModel       1.0      Recipe.qml
 singleton   NutrientsModel    1.0      Nutrients.qml
 singleton   HistoriesModel    1.0      Histories.qml
+singleton   ConsumedModel     1.0      Consume.qml
