@@ -122,12 +122,14 @@ Component{
                     id: dietText
                     text: model.dietLabels
                     elide: Qt.ElideRight
+                    width: parent.width
                     font.pixelSize: 13
                 }
 
                 Text {
                     id: healthText
                     text: model.healthLabels
+                    width: parent.width
                     elide: Qt.ElideRight
                     font.pixelSize: 13
                 }

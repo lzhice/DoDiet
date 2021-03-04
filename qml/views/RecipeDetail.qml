@@ -120,7 +120,7 @@ Item {
 
             Flow{
                 id: innerFlow
-                width: Math.max(350,mainFlow.width/2 -20)
+                width: Math.max(310,mainFlow.width/2 -20)
                 spacing: 10
                 Text {
                     id: foodName
@@ -165,12 +165,16 @@ Item {
 
                 Text {
                     id: dietText
+                    width: parent.width
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     text: "<b>"+qsTr("Diet label")+": </b>" + (model.dietLabels??"-")
                     font.pixelSize: 14
                 }
 
                 Text {
                     id: healthText
+                    width: parent.width
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     text: "<b>"+qsTr("Health label")+": </b>" +(model.healthLabels??"-")
                     font.pixelSize: 14
                 }

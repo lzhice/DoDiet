@@ -59,8 +59,8 @@ QtObject {
                                                                     item.yield,
                                                                     item.calories,
                                                                     item.totalWeight,
-                                                                    item.dietLabels[0]??"",
-                                                                    item.healthLabels[0]??"",
+                                                                    item.dietLabels.join(', ')??"",
+                                                                    item.healthLabels.join(', ')??"",
                                                                     item.shareAs,
                                                                     "<ul><li>"+item.ingredientLines.join("</li><li>")+"</li></ul>"
                                                                 ])
@@ -86,8 +86,8 @@ QtObject {
                                              label:item.label,
                                              image:item.image,
                                              calories:item.calories,
-                                             dietLabels:item.dietLabels[0]??"",
-                                             healthLabels:item.healthLabels[0]??"",
+                                             dietLabels:item.dietLabels.join(', ')??"",
+                                             healthLabels:item.healthLabels.join(', ')??"",
                                              share:item.shareAs
                                          })
                         }//end of if
