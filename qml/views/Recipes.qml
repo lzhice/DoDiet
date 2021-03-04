@@ -256,10 +256,191 @@ Item {
 
         Popup{
             id:  filterPopup
-            width: 260
+            width: 300
             x: fliterBtn.x
             y: fliterBtn.height
             height: Math.min(300,root.height-searchBox.height)
+            Flow{
+                width: parent.width
+                Item {
+                    width: parent.width
+                    height: 30
+                    Text{
+                        id:ingrText
+                        text: qsTr("Maximum Ingredients")+":"
+                        color: AppTheme.textColor
+                        width: parent.width/2
+                        font{
+                            pixelSize: 14
+                            bold: true
+                        }
+
+                    }
+                    SpinBox{
+                        id: ingrSpin
+                        from:1
+                        to:20
+                        value: 10
+                        anchors{
+                            left: ingrText.right
+                            leftMargin: 5
+                            verticalCenter: parent.verticalCenter
+                        }
+                        width: parent.width/2
+                    }
+                }
+                Item {
+                    width: parent.width
+                    height: 50
+                    Text{
+                        id:dietText
+                        width: parent.width/2
+                        text: qsTr("Diet Label")+":"
+                        color: AppTheme.textColor
+                        anchors.verticalCenter: parent.verticalCenter
+                        font{
+                            pixelSize: 14
+                            bold: true
+                        }
+                    }
+                    ComboBox{
+                        id: dietCombo
+                        width: parent.width/2
+                        model: ["balanced", "high-protein", "high-fiber", "low-fat", "low-carb", "low-sodium" ]
+                        Material.primary: AppTheme.primaryInt
+                        Material.accent: AppTheme.primaryInt
+                        anchors{
+                            left: dietText.right
+                            leftMargin: 5
+                            right: parent.right
+                            verticalCenter: parent.verticalCenter
+                        }
+                    }
+                }
+
+                Item {
+                    width: parent.width
+                    height: 50
+                    Text{
+                        id: healthText
+                        width: parent.width/2
+                        text: qsTr("Health Label")+":"
+                        color: AppTheme.textColor
+                        anchors.verticalCenter: parent.verticalCenter
+                        font{
+                            pixelSize: 14
+                            bold: true
+                        }
+                    }
+                    ComboBox{
+                        id: healthCombo
+                        width: parent.width/2
+                        model: ["alcohol-free", "celery-free", "crustacean-free", "dairy-free", "egg-free",
+                            "fish-free", "fodmap-free", "gluten-free", "immuno-supportive", "keto-friendly",
+                            "kidney-friendly", "kosher", "low-potassium", "lupine-free", "mustard-free",
+                            "low-fat-abs", "No-oil-added", "low-sugar", "paleo", "peanut-free", "pecatarian",
+                            "pork-free", "red-meat-free", "sesame-free", "shellfish-free", "soy-free",
+                            "sugar-conscious", "tree-nut-free", "vegan", "vegetarian","wheat-free"]
+                        Material.primary: AppTheme.primaryInt
+                        Material.accent: AppTheme.primaryInt
+                        anchors{
+                            left: healthText.right
+                            leftMargin: 5
+                            right: parent.right
+                            verticalCenter: parent.verticalCenter
+                        }
+                    }
+                }
+
+                Item {
+                    width: parent.width
+                    height: 50
+                    Text{
+                        id: caloriesText
+                        text: qsTr("Calories Range")+":"
+                        color: AppTheme.textColor
+                        anchors.verticalCenter: parent.verticalCenter
+                        font{
+                            pixelSize: 14
+                            bold: true
+                        }
+                        width: parent.width/2
+                    }
+                    RangeSlider{
+                        id: caloriesRange
+                        Material.primary: AppTheme.primaryInt
+                        Material.accent: AppTheme.primaryInt
+                        from: 1
+                        to: 10000
+                        first.value: 2000
+                        second.value: 7000
+                        stepSize: 10
+                        anchors{
+                            left: caloriesText.right
+                            leftMargin: 5
+                            verticalCenter: parent.verticalCenter
+                        }
+                        width: parent.width/2
+                    }
+                }
+                Text{
+                    id: caloriesText2
+                    text: qsTr("From")+": "+caloriesRange.first.value.toFixed(0)+" - "+qsTr("To") + ": "+caloriesRange.second.value.toFixed(0)
+                    color: AppTheme.textColor
+                    height: 30
+                    width: parent.width
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    font{
+                        pixelSize: 14
+                        bold: true
+                    }
+                }
+                Item {
+                    width: parent.width
+                    height: 80
+                    RoundButton{
+                        id:  searchBtn2
+                        width: parent.width/2
+                        radius: 10
+                        height: 70
+                        text: qsTr("Search")
+                        anchors.centerIn: parent
+                        Material.background: AppTheme.primaryInt
+                        Material.theme: Material.Light
+                        Material.foreground: AppTheme.textOnPrimaryColor
+                        font{
+                            pixelSize: 15
+                            bold: true
+                            capitalization: Font.MixedCase
+                        }
+
+                        icon{
+                            source: "qrc:/search.svg"
+                            width: 45
+                            height: 45
+                            color: "white"
+                        }
+                        onClicked: {
+                            if(searchInput.text.trim() === "")
+                                return // return if user not type anything
+
+                            let data = {
+                                q:searchInput.text.trim().toLowerCase(),
+                                diet:dietCombo.currentText,
+                                health: healthCombo.currentText,
+                                ingr:ingrSpin.value,
+                                calories: caloriesRange.first.value.toFixed(0) + "-" + caloriesRange.second.value.toFixed(0)
+
+                            }
+                            recipeModel.clear()
+                            filterPopup.close()
+                            controllers.getItemsByQuery(data,recipeModel)
+                        }
+                    }
+                }
+            }
         }
     } // End of GridLayout
 
