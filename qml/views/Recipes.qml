@@ -15,20 +15,7 @@ Item {
 
     RecipeControllers{ id: controllers }
 
-    ListModel{
-        id:recipeModel
-
-        ListElement{
-            localId:1
-            image:""
-            label : "Test"
-            calories: 789.0
-            dietLabels: "Low-Sodium"
-            healthLabels:"Celery-free"
-            share: ""
-        }
-
-    }
+    ListModel{ id:recipeModel }
 
     GridLayout{
         id:  searchBox
