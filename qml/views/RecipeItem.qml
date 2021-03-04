@@ -150,7 +150,6 @@ Component{
             }// end of Text -> caloriesText
 
             onClicked: {
-                console.log(model.localId)
                 mainStack.push("qrc:/views/RecipeDetail.qml",{recipeId:model.localId})
             }
         }// end of RoundButton
