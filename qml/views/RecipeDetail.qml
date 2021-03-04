@@ -120,11 +120,13 @@ Item {
 
             Flow{
                 id: innerFlow
-                width: Math.max(foodName.width,sourceText.width,caloriesText.width,totalWeightText.width,yieldText.width,mainFlow.width - foodImage.width - 10)
+                width: Math.max(350,mainFlow.width/2 -20)
                 spacing: 10
                 Text {
                     id: foodName
                     text: model.label
+                    width: parent.width
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     font{
                         bold:true
                         pixelSize: 20
@@ -185,6 +187,10 @@ Item {
                         leftMargin: 15
                     }
                     Material.background: AppTheme.primaryInt
+                    onClicked: {
+                        ConsumedModel.insertConsume([recipeId,(model.calories/model.yield)??0])
+                        messageDrawer.open()
+                    }
                 }
             }
             Text {
@@ -211,5 +217,36 @@ Item {
 
         }
 
+    }
+
+    Drawer{
+        id: messageDrawer
+        width: 250
+        edge: Qt.LeftEdge
+        y: rootWindow.height - 100
+        height: 50
+        modal: false
+        Rectangle{
+            width: 8
+            height: parent.height
+            anchors.right: parent.right
+            color: "#2ec42e"
+        }
+        Text {
+            id: name
+            text: qsTr("Your consume added successfully")
+            anchors{
+                verticalCenter: parent.verticalCenter
+                left: parent.left
+                leftMargin: 10
+            }
+            font{
+                pixelSize: 14
+            }
+
+            color: AppTheme.textColor
+
+        }
+        Timer{running: true;interval: 5000;onTriggered: messageDrawer.close()}
     }
 }
