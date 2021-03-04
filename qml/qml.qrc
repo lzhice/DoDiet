@@ -14,5 +14,7 @@
         <file>models/Nutrients.qml</file>
         <file>models/Histories.qml</file>
         <file>views/RecipeDetail.qml</file>
+        <file>views/Consume.qml</file>
+        <file>models/Consume.qml</file>
     </qresource>
 </RCC>
