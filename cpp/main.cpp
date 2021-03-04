@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQuickStyle>
+#include "pdfcreator.h"
 
 int main(int argc, char *argv[])
 {
@@ -24,6 +25,10 @@ int main(int argc, char *argv[])
     //**************** App Style ****************//
 
     QQuickStyle::setStyle("Material");
+
+    //*******************************************//
+
+    qmlRegisterType<PDFCreator>("pdfcreator",1,0,"PDF");
 
     //*******************************************//
 

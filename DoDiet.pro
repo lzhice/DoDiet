@@ -1,5 +1,4 @@
-QT += quick quickcontrols2 svg
-
+QT += quick quickcontrols2 svg printsupport
 CONFIG += c++11
 
 
@@ -8,7 +7,8 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        cpp/main.cpp
+        cpp/main.cpp \
+        cpp/pdfcreator.cpp
 
 RESOURCES +=  \
         qml/qml.qrc \
@@ -47,4 +47,7 @@ android{
 win32{
 
 }
+
+HEADERS += \
+    cpp/pdfcreator.h
 

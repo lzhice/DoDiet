@@ -4,13 +4,38 @@ import QtQuick.Controls.Material 2.15
 import QtGraphicalEffects 1.14
 import models 1.0
 import components 1.0
-
+import pdfcreator 1.0
 Item {
     property real todayCalories: -1
     ListModel{id: consumedModel}
+    PDF{id:pdf}
     Component.onCompleted: {
         todayCalories = ConsumedModel.getCurrentDayCalories()
         consumedModel.append(ConsumedModel.getConsumed())
+    }
+    RoundButton{
+        id:  searchBtn2
+        radius: 10
+        height: 70
+        text: qsTr("export as pdf")
+        Material.background: AppTheme.primaryInt
+        Material.theme: Material.Light
+        Material.foreground: AppTheme.textOnPrimaryColor
+        anchors.verticalCenter: weightImg.verticalCenter
+        font{
+            pixelSize: 14
+            bold: true
+            capitalization: Font.MixedCase
+        }
+        onClicked: {
+            let text= new Date().toDateString()+" - "+todayCalories+"kcal <br>"
+            for(let i=0; i<consumedModel.count;i++)
+            {
+                let item = consumedModel.get(i)
+                text += item.label+" -> calories: "+item.calories.toFixed(2)+" - "+item.registerDate+" "+item.registerTime+"<br>"
+            }
+            pdf.makePdf(text)
+        }
     }
 
     Text{
