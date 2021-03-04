@@ -7,5 +7,8 @@
         <file>searching.svg</file>
         <file>history.svg</file>
         <file>back.svg</file>
+        <file>calories.svg</file>
+        <file>hamburger.svg</file>
+        <file>measurement.svg</file>
     </qresource>
 </RCC>
